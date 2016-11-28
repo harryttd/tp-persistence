@@ -19,6 +19,7 @@ router.route('/')
 	})
 
 	.post((req, res, next) => {
+		console.log(req.body);
 	  Day.create(req.body)
 		  .then(function (createdDay) {
 		      res.status(201).send(createdDay);
@@ -27,7 +28,7 @@ router.route('/')
 	});
 
 router.route('/:id')
-	
+
 	.delete((req,res,next) => {
 		let id = req.params.id;
 		Day.findById(id)
@@ -38,10 +39,10 @@ router.route('/:id')
         res.sendStatus(204);
        })
 			.catch(next);
-	})
+	});
 
 router.route('/:id/hotels')
-	
+
 	.get((req,res,next) => {
 		let id = req.params.id;
 		Hotel.findById(id)
@@ -61,7 +62,7 @@ router.route('/:id/hotels')
 
 
 router.route('/:id/restaurants')
-	
+
 	.get((req,res,next) => {
 		let id = req.params.id;
 		Restaurant.findById(id)
@@ -76,11 +77,11 @@ router.route('/:id/restaurants')
 	})
 
 	.delete((req,res,next) => {
-		
+
 	})
 
 router.route('/:id/activities')
-	
+
 	.get((req,res,next) => {
 		let id = req.params.id;
 		Activity.findById(id)
@@ -95,7 +96,7 @@ router.route('/:id/activities')
 	})
 
 	.delete((req,res,next) => {
-		
+
 	})
 
 module.exports = router;

@@ -1,5 +1,5 @@
 'use strict';
-/* globals $ tripModule, attractionsModule, hotels, restaurants, activities */
+/* globals tripModule, attractionsModule, hotels, restaurants, activities */
 
 /**
  * This module fills the `select` tags with `option`s.
@@ -26,30 +26,20 @@ $(function(){
   // restaurants.forEach(makeOption, $restaurantSelect);
   // activities.forEach(makeOption, $activitySelect);
 
-  // $.get('/attractions/hotels')
-  // .then(function (hotels) {
-  //   console.log(hotels);
-  //   hotels.forEach(makeOption, $hotelSelect);
-  // })
-  // .catch( console.error.bind(console) );
-
   $.get('/attractions/hotels')
   .then(function (hotels) {
-    console.log(hotels);
     hotels.forEach(makeOption, $hotelSelect);
   })
   .catch(console.error.bind(console));
 
   $.get('/attractions/restaurants')
   .then(function (restaurants) {
-    console.log(restaurants);
     restaurants.forEach(makeOption, $restaurantSelect);
   })
   .catch(console.error.bind(console));
 
   $.get('/attractions/activities')
   .then(function (activities) {
-    console.log(activities);
     activities.forEach(makeOption, $activitySelect);
   })
   .catch(console.error.bind(console));
@@ -76,11 +66,11 @@ $(function(){
     .then(function (data) { console.log('GET response data', data) })
     .catch(console.error.bind(console));
     // should log an empty array
-    $.post('/api/days')
-    .then(function (data) { console.log('POST response data', data) })
-    .catch(console.error.bind(console));
-    // should log a new day
-    $.get('/api/days')
-    .then(function (data) { console.log('GET response data', data) })
-    .catch(console.error.bind(console));
+  $.post('/api/days', {"number": 4})
+  .then(function (data) { console.log('POST response data', data) })
+  .catch(console.error.bind(console));
+  // should log a new day
+  $.get('/api/days')
+  .then(function (data) { console.log('GET response data', data) })
+  .catch(console.error.bind(console));
 });
