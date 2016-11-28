@@ -38,7 +38,21 @@ $(function(){
     console.log(hotels);
     hotels.forEach(makeOption, $hotelSelect);
   })
-  .catch( console.error.bind(console) );
+  .catch(console.error.bind(console));
+
+  $.get('/attractions/restaurants')
+  .then(function (restaurants) {
+    console.log(restaurants);
+    restaurants.forEach(makeOption, $restaurantSelect);
+  })
+  .catch(console.error.bind(console));
+
+  $.get('/attractions/activities')
+  .then(function (activities) {
+    console.log(activities);
+    activities.forEach(makeOption, $activitySelect);
+  })
+  .catch(console.error.bind(console));
 
 
   function makeOption (databaseAttraction) {
@@ -58,4 +72,15 @@ $(function(){
     tripModule.addToCurrent(attraction);
   });
 
+  $.get('/api/days')
+    .then(function (data) { console.log('GET response data', data) })
+    .catch(console.error.bind(console));
+    // should log an empty array
+    $.post('/api/days')
+    .then(function (data) { console.log('POST response data', data) })
+    .catch(console.error.bind(console));
+    // should log a new day
+    $.get('/api/days')
+    .then(function (data) { console.log('GET response data', data) })
+    .catch(console.error.bind(console));
 });
