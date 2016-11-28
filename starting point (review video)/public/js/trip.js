@@ -1,5 +1,5 @@
 'use strict';
-/* global $ dayModule */
+/* globals dayModule */
 
 /**
  * A module for managing multiple days & application state.
@@ -46,14 +46,46 @@ var tripModule = (function () {
     $removeButton.on('click', deleteCurrentDay);
   });
 
+  $.get('/days')
+    .then(function (data) {
+      // console.log('GET response data', data);
+      data.forEach(day => {
+        // console.log(day);
+        addDay(day);
+      });
+      // addDay();
+    })
+    .catch(console.error.bind(console));
 
 
+
+    // $.ajax({
+    //   type: "POST",
+    //   url: url,
+    //   data: newDay,
+    //   success: success,
+    //   dataType: dataType
+    // });
   // ~~~~~~~~~~~~~~~~~~~~~~~
     // `addDay` may need to take information now that we can persist days -- we want to display what is being sent from the DB
   // ~~~~~~~~~~~~~~~~~~~~~~~
-  function addDay () { 
+  function addDay (dayInfo) {
     if (this && this.blur) this.blur(); // removes focus box from buttons
-    var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
+    var newDay;
+    // if (dayInfo) {
+    //   newDay = dayModule.create(dayInfo); // dayModule
+    // }
+    // else {
+      newDay = dayModule.create({ number: days.length + 1 }); // dayModule
+      console.log(newDay);
+      $.post('/days', function(data, status) {
+        console.log('POST response data', data);
+      })
+      // .then(function (data) {
+      //   // console.log(newDay);
+      // })
+      .catch(console.error.bind(console));
+    // }
     days.push(newDay);
     if (days.length === 1) {
       currentDay = newDay;
@@ -102,6 +134,28 @@ var tripModule = (function () {
     }
 
   };
+
+
+
+  // $.get('/days')
+  //   .then(function (data) {
+  //     console.log('GET response data', data);
+  //     publicAPI.load();
+  //   })
+  //   .catch(console.error.bind(console));
+    // should log an empty array
+  // $.post('/days')
+  // .then(function (data) {
+  //   console.log('POST response data', data);
+  //   let day = publicAPI.create(data);
+  //   console.log("DAYSFIAJFHKLASFJ ", day);
+  // })
+  // .catch(console.error.bind(console));
+  // should log a new day
+  // $.get('/days')
+  // .then(function (data) { console.log('GET response data', data); })
+  // .catch(console.error.bind(console));
+
 
   return publicAPI;
 

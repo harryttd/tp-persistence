@@ -149,5 +149,4 @@ var dayModule = (function () {
   };
 
   return publicAPI;
-
 }());

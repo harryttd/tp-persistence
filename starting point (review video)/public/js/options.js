@@ -62,15 +62,19 @@ $(function(){
     tripModule.addToCurrent(attraction);
   });
 
-  $.get('/api/days')
-    .then(function (data) { console.log('GET response data', data) })
-    .catch(console.error.bind(console));
-    // should log an empty array
-  $.post('/api/days', {"number": 4})
-  .then(function (data) { console.log('POST response data', data) })
-  .catch(console.error.bind(console));
-  // should log a new day
-  $.get('/api/days')
-  .then(function (data) { console.log('GET response data', data) })
-  .catch(console.error.bind(console));
+//   $.get('/days')
+//     .then(function (data) { console.log('GET response data', data); })
+//     .catch(console.error.bind(console));
+//     // should log an empty array
+//   $.post('/days')
+//   .then(function (data) {
+//     console.log('POST response data', data);
+//     let day = publicAPI.create(data);
+//     return day;
+//   })
+//   .catch(console.error.bind(console));
+//   // should log a new day
+//   $.get('/days')
+//   .then(function (data) { console.log('GET response data', data); })
+//   .catch(console.error.bind(console));
 });

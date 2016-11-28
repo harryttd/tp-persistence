@@ -20,9 +20,9 @@ router.route('/')
 
 	.post((req, res, next) => {
 		console.log(req.body);
-	  Day.create(req.body)
+	  return Day.create(req.body)
 		  .then(function (createdDay) {
-		      res.status(201).send(createdDay);
+		    res.status(201).send(createdDay);
 		  })
 		  .catch(next);
 	});

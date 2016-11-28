@@ -6,5 +6,11 @@ var Day = db.define('day', {
 	number: Sequelize.INTEGER
 });
 
+Day.hook('beforeSave', function(day) {
+	return Day.findAll()
+	.then(days => {
+		day.number = days.length + 1;
+	});
+});
 
 module.exports = Day;
